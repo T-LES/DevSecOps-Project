@@ -46,4 +46,24 @@ use Illuminate\Notifications\Notifiable;
             'password' => 'hashed',
         ];
     }
+
+     /**
+      * Tâches assignées à l'utilisateur.
+      *
+      * @return \Illuminate\Database\Eloquent\Relations\HasMany
+      */
+     public function assignedTasks()
+     {
+         return $this->hasMany(Task::class, 'assigned_to');
+     }
+
+     /**
+      * Tâches créées par l'utilisateur.
+      *
+      * @return \Illuminate\Database\Eloquent\Relations\HasMany
+      */
+     public function createdTasks()
+     {
+         return $this->hasMany(Task::class, 'created_by');
+     }
 }

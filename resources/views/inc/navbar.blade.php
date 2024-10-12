@@ -21,8 +21,8 @@
                         <i class="fas fa-hands-helping"></i> Services
                     </a>
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-eye"></i> Consulter la liste des tache
+                        <a href="{{route('tasks.index')}}" class="dropdown-item">
+                            <i class="fas fa-eye"></i> Consulter la liste des taches
                         </a>
 
                     </div>
