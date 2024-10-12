@@ -28,6 +28,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $roleAdmin->givePermissionTo(Permission::all());
 
         $roleUser = Role::create(['name' => 'USER']);
-        $roleUser->givePermissionTo(['creer les taches', 'editer les taches', 'consulter les taches']);
+        $roleUser->givePermissionTo(['editer les taches', 'consulter les taches']);
     }
 }
