@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
+use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('/', function () {
@@ -45,7 +46,11 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])
     ->name('login');
 
 Route::get('/dashboard', function () {
-    return view('employee.index');
+    $allTasks =  Task::all()->count();
+    $taskToDo = Task::where('status', 'To Do')->get()->count();
+    $taskInProgress = Task::where('status', 'In Progress')->get()->count();
+    $taskCompleted = Task::where('status', 'Completed')->get()->count();
+    return view('employee.index', compact('allTasks','taskCompleted','taskInProgress', 'taskToDo'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
