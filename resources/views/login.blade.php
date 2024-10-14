@@ -76,6 +76,7 @@
 {{--                </div>--}}
                 <div class="input-group mb-3">
                     <input type="email" name="email" id="email" value="{{ old('email') }}"  autofocus class="form-control " placeholder="Votre adresse email">
+
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
