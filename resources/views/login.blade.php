@@ -52,36 +52,56 @@
     <div class="card p-1">
         <div class="card-body login-card-body">
             <h3 class="login-box-msg">Connectez-Vous</h3>
-
+            @if ($errors->any())
+                <div class="row p-3 bg-white my-2">
+                    <div class="col-md-12 alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Erreurs: </strong><br>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            @endif
             <form id="loginForm" action="{{route('login')}}" method="POST">
                 @csrf
+{{--                <div>--}}
+{{--                    @error('email')--}}
+{{--                    <span id="email_error" class="invalid-feedback" role="alert">--}}
+{{--                        <strong>{{ $message }}</strong>--}}
+{{--                    </span>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
                 <div class="input-group mb-3">
-                    <input type="email" name="email"  value="{{ old('email') }}"  autofocus class="form-control @error('email') is-invalid @enderror" placeholder="Votre adresse email">
+                    <input type="email" name="email" id="email" value="{{ old('email') }}"  autofocus class="form-control " placeholder="Votre adresse email">
+
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
-                    @error('email')
-                    <span  class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                    <span  class="invalid-feedback" role="alert"></span>
+{{--                    @error('email')--}}
+{{--                    <span id="email_error" class="invalid-feedback" role="alert">--}}
+{{--                        <strong>{{ $message }}</strong>--}}
+{{--                    </span>--}}
+{{--                    @enderror--}}
+                    <span id="email_error" class="invalid-feedback" role="alert"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" name="password"  class="form-control @error('password') is-invalid @enderror" placeholder="Votre mot de passe">
+                    <input type="password" name="password" id="password" class="form-control " placeholder="Votre mot de passe">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
-                    @error('password')
-                    <span  class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                    <span  class="invalid-feedback" role="alert"></span>
+{{--                    @error('password')--}}
+{{--                    <span id="password_error" class="invalid-feedback" role="alert">--}}
+{{--                        <strong>{{ $message }}</strong>--}}
+{{--                    </span>--}}
+{{--                    @enderror--}}
+                    <span id="password_error" class="invalid-feedback" role="alert"></span>
                 </div>
                 <div class="row mb-3">
                     <div class="col-8">
@@ -99,17 +119,6 @@
                     </div>
                 </div>
             </form>
-
-{{--            <div class="social-auth-links text-center mb-3">--}}
-{{--                <p>- OR -</p>--}}
-{{--                <a href="#" class="btn btn-block btn-primary">--}}
-{{--                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook--}}
-{{--                </a>--}}
-{{--                <a href="#" class="btn btn-block btn-danger">--}}
-{{--                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+--}}
-{{--                </a>--}}
-{{--            </div>--}}
-{{--            <!-- /.social-auth-links -->--}}
 
             <p class="mb-1">
                 <a href="{{route('password.request')}}" class="text-success">Mot de passe oublié?</a>
@@ -146,28 +155,28 @@
         function validateForm() {
             let valid = true;
             // Clear previous errors and classes
-            $('.invalid-feedback').html('');
-            $('.form-control').removeClass('is-invalid').removeClass('is-valid');
+            // $('.invalid-feedback').html('');
+            // $('.form-control').removeClass('is-invalid').removeClass('is-valid');
 
             // Validate email
             const email = $('#email').val();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                $('#email_error').html('Adresse email invalide');
-                $('#email').addClass('is-invalid'); // Ajoute la classe is-invalid
+                // $('#email_error').html('Adresse email invalide');
+                // $('#email').addClass('is-invalid');
                 valid = false;
             } else {
-                $('#email').addClass('is-valid'); // Ajoute la classe is-valid
+                // $('#email').addClass('is-valid');
             }
 
             // Validate password
             const password = $('#password').val();
             if (password.length < 8) {
-                $('#password_error').html('Le mot de passe doit contenir au moins 8 caractères');
-                $('#password').addClass('is-invalid'); // Ajoute la classe is-invalid
+                // $('#password_error').html('Le mot de passe doit contenir au moins 8 caractères');
+                // $('#password').addClass('is-invalid');
                 valid = false;
             } else {
-                $('#password').addClass('is-valid'); // Ajoute la classe is-valid
+                // $('#password').addClass('is-valid');
             }
 
             return valid;
